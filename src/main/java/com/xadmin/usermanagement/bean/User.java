@@ -1,49 +1,84 @@
 package com.xadmin.usermanagement.bean;
 
 public class User {
-	
-	private int id;
-	private String name;
-	private String email;
-	private String country;
-	
-	public User(String name, String email, String country) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.country = country;
-	}
-	public User(int id, String name, String email, String country) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.country = country;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-    
-}
+    private int id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String email;
+    private String country;
+    private String region;
 
+    public User() {
+    }
+
+    public User(String firstName, String middleName, String lastName, String email, String country, String region) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.country = country;
+        this.region = region;
+    }
+
+    public User(int id, String firstName, String middleName, String lastName, String email, String country, String region) {
+        this.id = id;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.country = country;
+        this.region = region;
+    }
+
+    // Getters and Setters
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+    public void setRegion(String region) {
+        this.region = region;
+    }
+}
