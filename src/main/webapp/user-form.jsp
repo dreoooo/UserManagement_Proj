@@ -238,6 +238,20 @@
                         <div class="field-error">${lastNameError}</div>
                     </c:if>
                 </div>
+                
+                <!-- Gender -->
+				<div class="form-group">
+    				<div class="input-group">
+        				<div class="input-group-text"><i class="fas fa-venus-mars"></i></div>
+        					<select class="form-control" id="gender" name="gender" required>
+            					<option value="" disabled <c:if test="${empty user.gender}">selected</c:if>>Select Gender</option>
+            					<option value="Male" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Male'}">selected</c:if>>Male</option>
+            					<option value="Female" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Female'}">selected</c:if>>Female</option>
+            					<option value="Other" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Other'}">selected</c:if>>Other</option>
+        				   </select>
+    				</div>
+				</div>
+
 
                 <!-- Email -->
                 <div class="form-group">

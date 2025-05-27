@@ -7,25 +7,25 @@ import com.xadmin.usermanagement.bean.User;
 
 public class UserDAO {
 
-	private String jdbcURL = "jdbc:mysql://localhost:3306/userdb?useSSL=false&serverTimezone=UTC";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/userdb?useSSL=false&serverTimezone=UTC";
     private String jdbcUsername = "root";
     private String jdbcPassword = "dreo123";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users" +
-            " (first_name, middle_name, last_name, email, country, region) VALUES (?, ?, ?, ?, ?, ?);";
+            " (first_name, middle_name, last_name, email, country, region, gender) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT id, first_name, middle_name, last_name, email, country, region FROM users WHERE id = ?";
+    private static final String SELECT_USER_BY_ID = "SELECT id, first_name, middle_name, last_name, email, country, region, gender FROM users WHERE id = ?";
 
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
 
     private static final String DELETE_USERS_SQL = "DELETE FROM users WHERE id = ?;";
 
-    private static final String UPDATE_USERS_SQL = "UPDATE users SET first_name = ?, middle_name = ?, last_name = ?, email = ?, country = ?, region = ? WHERE id = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE users SET first_name = ?, middle_name = ?, last_name = ?, email = ?, country = ?, region = ?, gender = ? WHERE id = ?;";
 
     protected Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // or your driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class UserDAO {
         return connection;
     }
 
-    // Insert ng User
+    // Insert User
     public void insertUser(User user) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
@@ -44,16 +44,17 @@ public class UserDAO {
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getCountry());
             preparedStatement.setString(6, user.getRegion());
+            preparedStatement.setString(7, user.getGender());
 
             preparedStatement.executeUpdate();
-        } 
+        }
     }
 
     // Select User By ID
     public User selectUser(int id) {
         User user = null;
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
 
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -65,8 +66,9 @@ public class UserDAO {
                 String email = rs.getString("email");
                 String country = rs.getString("country");
                 String region = rs.getString("region");
+                String gender = rs.getString("gender");
 
-                user = new User(id, firstName, middleName, lastName, email, country, region);
+                user = new User(id, firstName, middleName, lastName, email, country, region, gender);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,7 +81,7 @@ public class UserDAO {
 
         List<User> users = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -91,8 +93,9 @@ public class UserDAO {
                 String email = rs.getString("email");
                 String country = rs.getString("country");
                 String region = rs.getString("region");
+                String gender = rs.getString("gender");
 
-                users.add(new User(id, firstName, middleName, lastName, email, country, region));
+                users.add(new User(id, firstName, middleName, lastName, email, country, region, gender));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,11 +103,11 @@ public class UserDAO {
         return users;
     }
 
-    // Updating User
+    // Update User
     public boolean updateUser(User user) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+             PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL)) {
 
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getMiddleName());
@@ -112,18 +115,19 @@ public class UserDAO {
             statement.setString(4, user.getEmail());
             statement.setString(5, user.getCountry());
             statement.setString(6, user.getRegion());
-            statement.setInt(7, user.getId());
+            statement.setString(7, user.getGender());
+            statement.setInt(8, user.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
     }
 
-    // Deleting User
+    // Delete User
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL)) {
 
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;

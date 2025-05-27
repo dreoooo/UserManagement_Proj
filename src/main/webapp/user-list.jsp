@@ -218,6 +218,10 @@
                                 <c:out value="${user.firstName}"/> <c:out value="${user.middleName}"/> <c:out value="${user.lastName}"/>
                             </h5>
                             <p class="card-text mb-1">
+    							<i class="fas fa-venus-mars text-warning"></i> <c:out value="${user.gender}" />
+							</p>
+                            
+                            <p class="card-text mb-1">
                                 <i class="fas fa-envelope text-secondary"></i> <c:out value="${user.email}" />
                             </p>
                             <p class="card-text mb-1">

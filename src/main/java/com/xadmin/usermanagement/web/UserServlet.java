@@ -79,27 +79,27 @@ public class UserServlet extends HttpServlet {
     private void insertUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String firstName = request.getParameter("firstName");
+        String middleName = request.getParameter("middleName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         String region = request.getParameter("region");
+        String gender = request.getParameter("gender");
 
-        // Basic validation example
         if (firstName == null || firstName.trim().isEmpty() ||
             lastName == null || lastName.trim().isEmpty() ||
             email == null || email.trim().isEmpty() ||
             country == null || country.trim().isEmpty() ||
-            region == null || region.trim().isEmpty()) {
-            // Send back to form with error message or just redirect
+            region == null || region.trim().isEmpty() ||
+            gender == null || gender.trim().isEmpty()) {
             response.sendRedirect("new?error=Please+fill+all+required+fields");
             return;
         }
 
-        User newUser = new User(firstName, null, lastName, email, country, region);
+        User newUser = new User(firstName, middleName, lastName, email, country, region, gender);
         userDAO.insertUser(newUser);
         response.sendRedirect("list");
     }
-
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
@@ -110,8 +110,9 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         String region = request.getParameter("region");
+        String gender = request.getParameter("gender");
 
-        User user = new User(id, firstName, middleName, lastName, email, country, region);
+        User user = new User(id, firstName, middleName, lastName, email, country, region, gender);
         userDAO.updateUser(user);
         response.sendRedirect("list");
     }
