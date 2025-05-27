@@ -31,8 +31,6 @@ public class User {
         this.region = region;
     }
 
-    // Getters and Setters
-
     public int getId() {
         return id;
     }

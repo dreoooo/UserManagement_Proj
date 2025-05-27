@@ -33,7 +33,7 @@ public class UserDAO {
         return connection;
     }
 
-    // Insert User
+    // Insert ng User
     public void insertUser(User user) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
@@ -49,7 +49,7 @@ public class UserDAO {
         } 
     }
 
-    // Select User by ID
+    // Select User By ID
     public User selectUser(int id) {
         User user = null;
         try (Connection connection = getConnection();
@@ -100,7 +100,7 @@ public class UserDAO {
         return users;
     }
 
-    // Update User
+    // Updating User
     public boolean updateUser(User user) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection();
@@ -119,7 +119,7 @@ public class UserDAO {
         return rowUpdated;
     }
 
-    // Delete User
+    // Deleting User
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection();

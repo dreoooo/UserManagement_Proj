@@ -5,31 +5,65 @@
     <title>Student Profiling Application</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+          crossorigin="anonymous" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
         body {
-            background-color: #f8f9fa;
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGFuZHNjYXBlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         .navbar {
             background-color: #343a40;
+            padding-top: 10px;     /* reduced from 20px */
+            padding-bottom: 8px;  /* reduced from 20px */
+            min-height: 60px;     /* smaller height */
         }
+
+        .navbar .container-fluid {
+            padding-left: 12px;
+            padding-right: 12px;
+            max-width: 100%; /* full width container */
+        }
+
         .navbar-brand {
             font-weight: bold;
+            font-size: 1.29rem;   /* slightly smaller text */
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;             /* space between logo and text */
+            margin: 0;
         }
+
+        .content-container {
+            animation: fadeIn 0.4s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
         .content-box {
-            background-color: #f0f2f5; /* softer gray background */
-            border: 1px solid #d1d5db; /* lighter gray border */
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* gentle shadow */
-        }
+    	background-color: rgba(255, 255, 255, 0.62); /* More transparent */
+    	border-radius: 12px;
+    	padding: 30px;
+    	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    	backdrop-filter: blur(10px); /* Stronger blur */
+    	-webkit-backdrop-filter: blur(10px);
+    	border: 1px solid rgba(255, 255, 255, 0.3); /* Softer border */
+		}
+
         .btn-sm {
             min-width: 75px;
         }
+
         .btn-oblong {
             border-radius: 30px;
             padding: 10px 30px;
@@ -39,63 +73,77 @@
             border: none;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
         }
+
         .btn-oblong:hover {
             background-color: #495057;
             color: white;
         }
+
         .header-space {
-            margin-top: 20px;
+            margin-top: 45px;
             margin-bottom: 30px;
         }
+
         .user-cards-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             justify-content: center;
         }
+
         @media (max-width: 992px) {
             .user-cards-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
         @media (max-width: 768px) {
             .user-cards-container {
                 grid-template-columns: 1fr;
             }
         }
+
         .no-users-message {
             font-style: italic;
             color: #6c757d;
         }
+
         .card {
-            border: 1px solid #dee2e6;
+            width: 100%;
+            height: 100%;
+            border: none;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
             padding: 15px;
-            background-color: white;
-            max-width: 320px;
-            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.58);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(8px);
         }
-        /* Updated card header background and color */
+
         .card-header {
             font-size: 1rem;
             font-weight: bold;
-            background-color: #343a40; /* same as add button */
-            color: white; /* white text for contrast */
+            background-color: #343a40;
+            color: white;
             text-align: center;
             border-radius: 8px 8px 0 0;
             padding: 10px;
             margin: -15px -15px 15px -15px;
         }
+
         .card-actions {
             margin-top: 15px;
             display: flex;
             justify-content: flex-start;
             gap: 10px;
         }
-        .fa-user-graduate {
-            color: #343a40; /* icon color */
+
+        .fa-user {
+            color: #343a40;
         }
+
         .header-row {
             display: flex;
             justify-content: space-between;
@@ -103,6 +151,7 @@
             margin-bottom: 25px;
             flex-wrap: wrap;
         }
+
         h3 {
             margin: 0;
             font-weight: 600;
@@ -111,16 +160,19 @@
             align-items: center;
             gap: 10px;
         }
-        h3 .fas.fa-user-graduate {
+
+        h3 .fas.fa-user {
             vertical-align: middle;
-            color: #343a40; /* icon color */
+            color: #343a40;
         }
+
         @media (max-width: 576px) {
             .header-row {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
             }
+
             .btn-oblong {
                 width: 100%;
                 text-align: center;
@@ -132,20 +184,20 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="container">
+        <div class="container-fluid px-3">
             <a href="#" class="navbar-brand">
-                <img src="https://htcgsc.edu.ph/wp-content/uploads/2022/02/htc-new-seal.png" alt="HTC Logo" height="30" style="margin-right: 10px;">
+                <img src="https://htcgsc.edu.ph/wp-content/uploads/2022/02/htc-new-seal.png" alt="HTC Logo" height="30" />
                 Student Profiling Application
             </a>
         </div>
     </nav>
 </header>
 
-<div class="container header-space">
+<div class="container header-space content-container">
     <div class="content-box">
         <div class="header-row">
             <h3>
-                <i class="fas fa-user-graduate"></i>
+                <i class="fas fa-user"></i>
                 List of Student Profiles
             </h3>
             <a href="${pageContext.request.contextPath}/new" class="btn btn-oblong">
@@ -162,7 +214,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title mb-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                <i class="fas fa-user-graduate text-primary"></i>
+                                <i class="fas fa-user text-primary"></i>
                                 <c:out value="${user.firstName}"/> <c:out value="${user.middleName}"/> <c:out value="${user.lastName}"/>
                             </h5>
                             <p class="card-text mb-1">
@@ -175,10 +227,10 @@
                                 <i class="fas fa-map-marker-alt text-info"></i> <c:out value="${user.region}" />
                             </p>
                             <div class="card-actions">
-                                <a href="edit?id=${user.id}" class="btn btn-outline-secondary btn-sm">
+                                <a href="${pageContext.request.contextPath}/edit?id=${user.id}" class="btn btn-outline-secondary btn-sm">
                                     <i class="fas fa-edit" style="margin-right: 5px;"></i> Edit
                                 </a>
-                                <a href="delete?id=${user.id}" class="btn btn-outline-danger btn-sm"
+                                <a href="${pageContext.request.contextPath}/delete?id=${user.id}" class="btn btn-outline-danger btn-sm"
                                    onclick="return confirm('Are you sure you want to delete this student profile?')">
                                     <i class="fas fa-trash-alt"></i> Delete
                                 </a>
