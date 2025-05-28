@@ -80,9 +80,8 @@ public class User {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-    
-    
-
-    
+	}  
 }
+
+
+

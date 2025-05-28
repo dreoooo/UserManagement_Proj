@@ -20,24 +20,24 @@
 
         .navbar {
             background-color: #343a40;
-            padding-top: 10px;     /* reduced from 20px */
-            padding-bottom: 8px;  /* reduced from 20px */
-            min-height: 60px;     /* smaller height */
+            padding-top: 10px;     
+            padding-bottom: 8px;  
+            min-height: 60px;     
         }
 
         .navbar .container-fluid {
             padding-left: 12px;
             padding-right: 12px;
-            max-width: 100%; /* full width container */
+            max-width: 100%; 
         }
 
         .navbar-brand {
             font-weight: bold;
-            font-size: 1.29rem;   /* slightly smaller text */
+            font-size: 1.29rem;   
             color: white;
             display: flex;
             align-items: center;
-            gap: 8px;             /* space between logo and text */
+            gap: 8px;             
             margin: 0;
         }
 
@@ -51,14 +51,14 @@
         }
 
         .content-box {
-    	background-color: rgba(255, 255, 255, 0.62); /* More transparent */
-    	border-radius: 12px;
-    	padding: 30px;
-    	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15); /* More prominent shadow */
-    	backdrop-filter: blur(10px); /* Stronger blur */
-    	-webkit-backdrop-filter: blur(10px);
-    	border: 1px solid rgba(255, 255, 255, 0.3); /* Softer border */
-		}
+            background-color: rgba(255, 255, 255, 0.62); 
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+        }
 
         .btn-sm {
             min-width: 75px;
@@ -161,11 +161,6 @@
             gap: 10px;
         }
 
-        h3 .fas.fa-user {
-            vertical-align: middle;
-            color: #343a40;
-        }
-
         @media (max-width: 576px) {
             .header-row {
                 flex-direction: column;
@@ -197,11 +192,11 @@
     <div class="content-box">
         <div class="header-row">
             <h3>
-                <i class="fas fa-user"></i>
+                <i class="fas fa-users"></i>
                 List of Student Profiles
             </h3>
             <a href="${pageContext.request.contextPath}/new" class="btn btn-oblong">
-                <i class="fas fa-plus" style="margin-right: 5px;"></i> Add Student Profile
+                <i class="fas fa-user-plus" style="margin-right: 5px;"></i> Add Student Profile
             </a>
         </div>
 
@@ -217,10 +212,22 @@
                                 <i class="fas fa-user text-primary"></i>
                                 <c:out value="${user.firstName}"/> <c:out value="${user.middleName}"/> <c:out value="${user.lastName}"/>
                             </h5>
+
                             <p class="card-text mb-1">
-    							<i class="fas fa-venus-mars text-warning"></i> <c:out value="${user.gender}" />
-							</p>
-                            
+                                <c:choose>
+                                    <c:when test="${user.gender eq 'Male'}">
+                                        <i class="fas fa-mars text-primary"></i>
+                                    </c:when>
+                                    <c:when test="${user.gender eq 'Female'}">
+                                        <i class="fas fa-venus text-danger"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <i class="fas fa-genderless text-muted"></i>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:out value="${user.gender}" />
+                            </p>
+
                             <p class="card-text mb-1">
                                 <i class="fas fa-envelope text-secondary"></i> <c:out value="${user.email}" />
                             </p>

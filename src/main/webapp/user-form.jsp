@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
-        /* Your original styles here, unchanged */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGFuZHNjYXBlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww');
@@ -277,6 +276,8 @@
                             <option value="Canada" <c:if test="${(param.country != null ? param.country : user.country) == 'Canada'}">selected</c:if>>Canada</option>
                             <option value="United Kingdom" <c:if test="${(param.country != null ? param.country : user.country) == 'United Kingdom'}">selected</c:if>>United Kingdom</option>
                             <option value="Australia" <c:if test="${(param.country != null ? param.country : user.country) == 'Australia'}">selected</c:if>>Australia</option>
+                            <option value="Japan" <c:if test="${(param.country != null ? param.country : user.country) == 'Japan'}">selected</c:if>>Japan</option>
+                            <option value="Korea" <c:if test="${(param.country != null ? param.country : user.country) == 'Korea'}">selected</c:if>>Korea</option>
                         </select>
                     </div>
                     <c:if test="${not empty countryError}">
