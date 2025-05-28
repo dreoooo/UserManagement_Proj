@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGFuZHNjYXBlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww');
@@ -18,6 +19,7 @@
             padding: 0;
         }
 
+        /* Navbar Styling */
         .navbar {
             background-color: #343a40;
             padding-top: 10px;
@@ -41,6 +43,7 @@
             margin: 0;
         }
 
+        /* Main Container Animation */
         .content-container {
             animation: fadeIn 0.4s ease-in forwards;
         }
@@ -50,6 +53,7 @@
             to {opacity: 1;}
         }
 
+        /* Card Styling */
         .card {
             border: none;
             border-radius: 16px;
@@ -74,6 +78,7 @@
             margin: 20px auto 0 auto;
         }
 
+        /* Form and Input Styling */
         .form-group {
             margin-bottom: 10px;
         }
@@ -124,6 +129,7 @@
             color: transparent;
         }
 
+        /* Button Styling */
         .btn-oblong {
             border-radius: 30px;
             padding: 10px 40px;
@@ -244,7 +250,7 @@
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-venus-mars"></i></div>
                         <select class="form-control" id="gender" name="gender" required>
-                            <option value="" disabled <c:if test="${empty user.gender}">selected</c:if>>Select Gender</option>
+                            <option value="" disabled selected hidden>Select Gender</option>
                             <option value="Male" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Male'}">selected</c:if>>Male</option>
                             <option value="Female" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Female'}">selected</c:if>>Female</option>
                             <option value="Other" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Other'}">selected</c:if>>Other</option>
@@ -270,7 +276,7 @@
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-globe"></i></div>
                         <select id="country" name="country" class="form-control" required>
-                            <option value="">Select Country</option>
+                            <option value="" disabled selected hidden>Select Country</option>
                             <option value="Philippines" <c:if test="${(param.country != null ? param.country : user.country) == 'Philippines'}">selected</c:if>>Philippines</option>
                             <option value="United States" <c:if test="${(param.country != null ? param.country : user.country) == 'United States'}">selected</c:if>>United States</option>
                             <option value="Canada" <c:if test="${(param.country != null ? param.country : user.country) == 'Canada'}">selected</c:if>>Canada</option>
@@ -287,7 +293,7 @@
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
                         <select id="region" name="region" class="form-control" required>
-                            <option value="">Select Region</option>
+                            <option value="" disabled selected hidden>Select Region</option>
                             <c:forEach var="i" begin="1" end="13">
                                 <option value="${i}" <c:if test="${(param.region != null ? param.region : user.region) == i}">selected</c:if>>Region ${i}</option>
                             </c:forEach>
