@@ -169,17 +169,17 @@
             margin-top: 25px;
         }
 
-        /* Added minimal style for field warnings */
         .field-error {
             color: #d9534f;
             font-size: 0.85rem;
             margin-top: 0.25rem;
-            margin-left: 2.8rem; /* aligns nicely with input padding */
+            margin-left: 2.8rem;
         }
     </style>
 </head>
 <body>
 
+<!-- NAVBAR (.navbar) -->
 <header>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid px-3">
@@ -191,6 +191,7 @@
     </nav>
 </header>
 
+<!-- MAIN CONTAINER -->
 <div class="container content-container">
     <c:set var="formAction" value="${empty user ? 'insert' : 'update'}" />
     <div class="card" role="main" aria-labelledby="formTitle">
@@ -202,7 +203,7 @@
                     <input type="hidden" name="id" value="${user.id}" />
                 </c:if>
 
-                <!-- First Name -->
+                <!-- FIRST NAME (.form-group) -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-id-badge"></i></div>
@@ -215,7 +216,7 @@
                     </c:if>
                 </div>
 
-                <!-- Middle Name -->
+                <!-- MIDDLE NAME (.form-group) -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-id-badge"></i></div>
@@ -225,7 +226,7 @@
                     </div>
                 </div>
 
-                <!-- Last Name -->
+                <!-- LAST NAME (.form-group) -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-id-badge"></i></div>
@@ -237,22 +238,21 @@
                         <div class="field-error">${lastNameError}</div>
                     </c:if>
                 </div>
-                
-                <!-- Gender -->
-				<div class="form-group">
-    				<div class="input-group">
-        				<div class="input-group-text"><i class="fas fa-venus-mars"></i></div>
-        					<select class="form-control" id="gender" name="gender" required>
-            					<option value="" disabled <c:if test="${empty user.gender}">selected</c:if>>Select Gender</option>
-            					<option value="Male" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Male'}">selected</c:if>>Male</option>
-            					<option value="Female" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Female'}">selected</c:if>>Female</option>
-            					<option value="Other" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Other'}">selected</c:if>>Other</option>
-        				   </select>
-    				</div>
-				</div>
 
+                <!-- GENDER (.form-group) -->
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-text"><i class="fas fa-venus-mars"></i></div>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="" disabled <c:if test="${empty user.gender}">selected</c:if>>Select Gender</option>
+                            <option value="Male" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Male'}">selected</c:if>>Male</option>
+                            <option value="Female" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Female'}">selected</c:if>>Female</option>
+                            <option value="Other" <c:if test="${(param.gender != null ? param.gender : user.gender) == 'Other'}">selected</c:if>>Other</option>
+                        </select>
+                    </div>
+                </div>
 
-                <!-- Email -->
+                <!-- EMAIL (.form-group) -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-envelope"></i></div>
@@ -265,7 +265,7 @@
                     </c:if>
                 </div>
 
-                <!-- Country -->
+                <!-- COUNTRY (.form-group) -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-globe"></i></div>
@@ -280,12 +280,9 @@
                             <option value="Korea" <c:if test="${(param.country != null ? param.country : user.country) == 'Korea'}">selected</c:if>>Korea</option>
                         </select>
                     </div>
-                    <c:if test="${not empty countryError}">
-                        <div class="field-error">${countryError}</div>
-                    </c:if>
                 </div>
 
-                <!-- Region -->
+                <!-- REGION (.form-group) -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
@@ -299,11 +296,9 @@
                             <option value="CAR" <c:if test="${(param.region != null ? param.region : user.region) == 'CAR'}">selected</c:if>>CAR</option>
                         </select>
                     </div>
-                    <c:if test="${not empty regionError}">
-                        <div class="field-error">${regionError}</div>
-                    </c:if>
                 </div>
 
+                <!-- FORM BUTTONS (.button-container) -->
                 <div class="button-container">
                     <button type="submit" class="btn btn-oblong">
                         <c:choose>

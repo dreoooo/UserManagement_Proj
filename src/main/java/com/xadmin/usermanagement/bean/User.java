@@ -82,6 +82,3 @@ public class User {
 		this.gender = gender;
 	}  
 }
-
-
-
