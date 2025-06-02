@@ -42,6 +42,26 @@
             gap: 8px;
             margin: 0;
         }
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+
+        .dropdown-menu {
+            background-color: #343a40;
+        }
+
+        .dropdown-item {
+            color: white;
+        }
+
+        .dropdown-item:hover {
+            background-color: #495057;
+        }
 
         /* Main Container Animation */
         .content-container {
@@ -191,8 +211,36 @@
         <div class="container-fluid px-3">
             <a href="#" class="navbar-brand">
                 <img src="https://htcgsc.edu.ph/wp-content/uploads/2022/02/htc-new-seal.png" alt="Holy Trinity College Logo" height="30" />
-                Student Profiling Application
+                Dreo's Web Project
             </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="${pageContext.request.contextPath}/home.jsp" class="nav-link">
+                            <i class="fas fa-home mr-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="${pageContext.request.contextPath}/about.jsp" class="nav-link">
+                            <i class="fas fa-info-circle mr-1"></i> About Us
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button" data-toggle="dropdown">
+                            <i class="fas fa-cog mr-1"></i> Settings
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="settingsDropdown">
+                            <a class="dropdown-item" href="#">Account Settings</a>
+                            <a class="dropdown-item" href="#">Privacy</a>
+                        </div>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>
@@ -294,30 +342,46 @@
                         <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
                         <select id="region" name="region" class="form-control" required>
                             <option value="" disabled selected hidden>Select Region</option>
-                            <c:forEach var="i" begin="1" end="13">
-                                <option value="${i}" <c:if test="${(param.region != null ? param.region : user.region) == i}">selected</c:if>>Region ${i}</option>
-                            </c:forEach>
-                            <option value="MIMAROPA" <c:if test="${(param.region != null ? param.region : user.region) == 'MIMAROPA'}">selected</c:if>>MIMAROPA</option>
                             <option value="NCR" <c:if test="${(param.region != null ? param.region : user.region) == 'NCR'}">selected</c:if>>NCR</option>
                             <option value="CAR" <c:if test="${(param.region != null ? param.region : user.region) == 'CAR'}">selected</c:if>>CAR</option>
+                            <option value="Region I" <c:if test="${(param.region != null ? param.region : user.region) == 'Region I'}">selected</c:if>>Region I</option>
+                            <option value="Region II" <c:if test="${(param.region != null ? param.region : user.region) == 'Region II'}">selected</c:if>>Region II</option>
+                            <option value="Region III" <c:if test="${(param.region != null ? param.region : user.region) == 'Region III'}">selected</c:if>>Region III</option>
+                            <option value="Region IV-A" <c:if test="${(param.region != null ? param.region : user.region) == 'Region IV-A'}">selected</c:if>>Region IV-A</option>
+                            <option value="Region IV-B" <c:if test="${(param.region != null ? param.region : user.region) == 'Region IV-B'}">selected</c:if>>Region IV-B</option>
+                            <option value="Region V" <c:if test="${(param.region != null ? param.region : user.region) == 'Region V'}">selected</c:if>>Region V</option>
+                            <option value="Region VI" <c:if test="${(param.region != null ? param.region : user.region) == 'Region VI'}">selected</c:if>>Region VI</option>
+                            <option value="Region VII" <c:if test="${(param.region != null ? param.region : user.region) == 'Region VII'}">selected</c:if>>Region VII</option>
+                            <option value="Region VIII" <c:if test="${(param.region != null ? param.region : user.region) == 'Region VIII'}">selected</c:if>>Region VIII</option>
+                            <option value="Region IX" <c:if test="${(param.region != null ? param.region : user.region) == 'Region IX'}">selected</c:if>>Region IX</option>
+                            <option value="Region X" <c:if test="${(param.region != null ? param.region : user.region) == 'Region X'}">selected</c:if>>Region X</option>
+                            <option value="Region XI" <c:if test="${(param.region != null ? param.region : user.region) == 'Region XI'}">selected</c:if>>Region XI</option>
+                            <option value="Region XII" <c:if test="${(param.region != null ? param.region : user.region) == 'Region XII'}">selected</c:if>>Region XII</option>
+                            <option value="CARAGA" <c:if test="${(param.region != null ? param.region : user.region) == 'CARAGA'}">selected</c:if>>CARAGA</option>
+                            <option value="BARMM" <c:if test="${(param.region != null ? param.region : user.region) == 'BARMM'}">selected</c:if>>BARMM</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- FORM BUTTONS (.button-container) -->
                 <div class="button-container">
                     <button type="submit" class="btn btn-oblong">
                         <c:choose>
-                            <c:when test="${not empty user}">Update Student Profile</c:when>
-                            <c:otherwise>Add Student Profile</c:otherwise>
+                            <c:when test="${empty user}">Add Student Profile</c:when>
+                            <c:otherwise>Update User</c:otherwise>
                         </c:choose>
                     </button>
-                    <a href="${pageContext.request.contextPath}/list" class="btn btn-user-list">Home</a>
+                    <a href="${pageContext.request.contextPath}/list" class="btn btn-user-list">
+                        <i></i> List of Students
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

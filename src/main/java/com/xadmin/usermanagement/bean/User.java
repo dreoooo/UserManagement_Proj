@@ -9,7 +9,7 @@ public class User {
     private String country;
     private String region;
     private String gender;
-    
+
 	public User(String firstName, String middleName, String lastName, String email, String country, String region,
 			String gender) {
 		super();
@@ -32,8 +32,7 @@ public class User {
 		this.country = country;
 		this.region = region;
 		this.gender = gender;
-	}
-	public int getId() {
+	}public int getId() {
 		return id;
 	}
 	public void setId(int id) {
